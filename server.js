@@ -4,7 +4,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var SlackBot = require("slackbots");
 var channel = "general";
-var count = 0
+var location = 3
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
@@ -12,10 +12,10 @@ app.get('/', function (req, res) {
 //     response.sendfile('index.html');
 // })
 
+// SOCKET.IO -----------------------------------------------------
 io.on('connection', function(data) {
-    count ++
-    data.send(count + " active sockets");
-    console.log(count);
+    data.send("parked in spot" + location);
+    console.log("it worked");
 })
 
 
@@ -63,5 +63,5 @@ function sendGreeting() {
         var greetings = [
             "received"
         ];
-        return greetings[Math.floor(Math.random() * greetings.length)] + " blah";
+        return greetings[Math.floor(Math.random() * greetings.length)];
     }
