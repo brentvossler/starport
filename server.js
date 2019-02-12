@@ -1,3 +1,4 @@
+require('dotenv').config();
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -25,7 +26,7 @@ server.listen(3000);
 
 // BOT -------------------------------------------------------------
 var bot = new SlackBot({
-    token: "xoxb-539496404048-544364496215-PuY065hZR3NpJyHtiomiLrVI",
+    token: process.env.slackToken,
     name: "Starportbot"
 });
 
